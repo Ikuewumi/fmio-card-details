@@ -1,0 +1,106 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --whiteT: #ffffff10;
+    --blackT: #19182620;
+    --black: hsl(0, 0%, 0%);
+    --fontSans: 'Space Grotesk', sans-serif;
+    color-scheme: light dark;
+    font-size: 13px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --black: hsl(0, 0%, 100%);
+        --blackT: #ffffff10;
+        --whiteT: #19182620;
+        --white: hsl(0, 0%, 0%);
+    }
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: var(--fontSans);
+}
+
+img { max-width: 100%; }
+.ucase { text-transform: uppercase; }
+.light { font-weight:300; }
+.size-1 { font-size: clamp(2.7rem , 2.7rem + 0.4vw, 3rem); }
+.size-2 { font-size: clamp(1.7rem , 1.7rem + 0.4vw, 2.9rem); }
+.size-3 { font-size: clamp(1.6rem , 1.6rem + 0.4vw, 2.7rem); }
+.clr-light { color: var(--white); }
+.clr-dark { color: var(--black); }
+.clr-dgray { color: var(--veryDarkGray); }
+.clr-gray { color: var(--darkGray); }
+.list-none { list-style: none; }
+.contents { display: contents; }
+.flex { display: flex; }
+.none { display: none; }
+.block { display: block; }
+.contents { display: contents; }
+.wrap { flex-wrap: wrap; }
+.grid { display: grid; }
+.lh-head {line-height: 1;}
+.spacing { letter-spacing: 5px; }
+
+h1, h2, h3, strong { font-family: var(--fontSans); }
+
+p {font-size: 1.1rem;}
+
+
+
+
+.sgrid {
+    --col-count: 6;
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) repeat(var(--col-count), minmax(0, 11rem)) minmax(2rem, 1fr);
+
+        & > * {
+            grid-column: 2 / -2;
+        }
+        
+
+
+
+
+
+
+    @media (min-width: 768px) {
+
+        &.two { --col-number: calc(var(--col-count, 6) / 2); }
+        &.three { --col-number: calc(var(--col-count, 6) / 3); }
+
+        &.cols {
+            & > * {
+                grid-column: span var(--col-number);
+            }
+
+
+            & > *:first-child {
+                grid-column: var(--col-start, 2) / span var(--col-number);
+            }
+
+
+            
+            & > *:last-child {
+                grid-column: span var(--col-number) / calc(var(--col-start, 2) * -1);
+            }
+        }
+
+
+
+
+
+
+    }
+}
