@@ -4,9 +4,127 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>FMIO Template</title>
   </head>
   <body>
+    
+    <header>
+      <h1 class="none">FMIO - Card Details Site</h1>
+    </header>
+    
+    
+    
+    
+    <main class="sgrid">
+      <figure>
+
+        <div class="card card-front">
+          <img src="/images/bg-card-front.png" class="front" alt="card-front">
+          <span class="absolute flex">
+            <svg width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+
+            <em id="card-num">0000 0000 0000 0000</em>
+
+            <div class="flex">
+              <strong id="card-name">Jane Appleseed</strong>
+              <span id="card-expiry-date">03 / 20</span>
+            </div>
+          </span>
+
+        </div>
+
+
+        <div class="card card-back">
+          <img src="/images/bg-card-back.png" class="back" alt="card-back">
+          <span class="absolute" id="cvc">000</span>
+        </div>
+
+        <figcaption title="card" class="none">card ilustration</figcaption>
+      </figure>
+
+
+
+
+
+
+      <section class="card-form">
+        <h2 class="none">CARD FORM</h2>
+        <form>
+
+          <div class="field">
+            <label for="name">Cardholder name</label>
+            <input type="text" name="name" id="name" placeholder="Jane Appleseed" required aria-required="true">
+            <span class="show-error">Please enter the correct format</span>
+          </div>
+          
+
+
+
+          <div class="field">
+            <label for="card-number">Card number</label>
+            <input type="text" name="card-number" id="card-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" required aria-required="true">
+            <span class="show-error">Wrong format, numbers only</span>
+          </div>
+          
+
+
+
+          <div class="special-field">
+
+            <div class="field">
+
+              <label for="year" class="none">(YY)</label>
+              <label for="month">Exp. Date (MM/YY)</label>
+              <div class="inputs">
+                <input type="text" id="month" inputmode="numeric" name="month" placeholder="MM">
+                <input type="text" id="year" inputmode="numeric" name="year" placeholder="YY">
+              </div>
+              <span class="show-error">Can't be blank</span>
+            </div>
+            
+            
+
+            <div class="field">
+
+              <label for="cvc">CVC</label>
+              <input type="text" id="cvc" inputmode="numeric" placeholder="e.g. 123">
+              <span class="show-error">Can't be blank</span>
+              
+
+            </div>
+
+
+
+
+
+          </div>
+
+
+
+
+          <button type="submit">Confirm</button>
+
+        </form>
+      </section>
+
+
+
+
+      <section class="thanks none">
+        <h2>THANK YOU!</h2>
+        <img src="/images/icon-complete.svg" alt="complete!" role="presentation" aria-hidden="true">
+        <p>We've added your card details</p>
+        <button type="button" id="continue">Continue</button>
+      </section>
+
+
+    </main>
+
+
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
