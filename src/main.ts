@@ -1,6 +1,10 @@
 import "./scss/app.scss";
 import {z} from "zod";
 
+type KeyType = "name" | "cardNum" | "month" | "year" | "cvc"
+
+
+
 
 
 
@@ -58,11 +62,54 @@ const addCardDetails = (name = "Jane Appleseed", cardNum = "0000000000000000", m
     document.querySelector('strong#card-name')!.textContent = name
     document.querySelector('em#card-num')!.textContent = formatCardNum(cardNum)
     document.querySelector('span#card-expiry-date')!.textContent = `${month} / ${year}`
-    document.querySelector('span#cvc')!.textContent = cvc
+    document.querySelector('span#span-cvc')!.textContent = cvc
 }
 
 
+
+
+//App level Data
+const _appData = {
+    name: "Jane Appleseed",
+    cardNum: "0000000000000000",
+    month: "00",
+    year: "00",
+    cvc: "000"
+}
+let appData = new Proxy(_appData, {
+    get(obj, p: KeyType) {
+        return obj[p]
+    },
+
+
+
+    set(obj, p, newVal) {
+        const newObj = {...obj}
+        newObj[p as KeyType] = newVal as string
+        addCardDetails(newObj.name, newObj.cardNum, newObj.month, newObj.year, newObj.cvc)
+        return Reflect.set(obj, p, newVal)
+    }
+})
+    
+
+
 const listen = () => {
+    form.addEventListener('input', (e) => {
+        e.preventDefault()
+        setup()
+        const name = validateField(inputName, zInputName);
+        appData.name= name
+        const number = validateField(inputCardNum, zInputCardNum);
+        appData.cardNum =  number
+        const month = validateField(inputMonth, zMonth)
+        appData.month = month
+        const year = validateField(inputYear, zYear)
+        appData.year = year
+        const cvc = validateField(inputCvc, zCvc)
+        appData.cvc = cvc
+    })
+
+
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         setup()
@@ -75,12 +122,17 @@ const listen = () => {
         Array.from(document.querySelectorAll('section')).forEach(el => {
             if (el.classList.contains("thanks")) el.classList.remove("none");
             else el.classList.add('none');
-            addCardDetails(name, number, month, year, cvc)
+            appData.name= name
+            appData.cardNum= number
+            appData.month= month
+            appData.year= year
+            appData.cvc= cvc
+
         })
-
         form.reset()
-
     })
+
+
 
 
 
